@@ -1,0 +1,187 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": true
+        },
+        {
+          "name": "phone",
+          "type": "varchar",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": true,
+          "values": [
+            "active",
+            "inactive",
+            "prospective"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Contact",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "customer_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": true
+        },
+        {
+          "name": "phone",
+          "type": "varchar",
+          "nullable": true
+        },
+        {
+          "name": "position",
+          "type": "varchar",
+          "nullable": true
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Deal",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "customer_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": true,
+          "values": [
+            "open",
+            "won",
+            "lost"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Note",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "customer_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "title",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Activity",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "customer_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "scheduled_at",
+          "type": "timestamptz",
+          "nullable": true
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Customer",
+      "to": "Contact",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Customer",
+      "to": "Deal",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Customer",
+      "to": "Note",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Customer",
+      "to": "Activity",
+      "type": "OneToMany"
+    }
+  ],
+  "_removedEntities": []
+}
